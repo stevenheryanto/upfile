@@ -1,0 +1,28 @@
+<VirtualHost *:80>
+
+ServerAdmin Dibiakcom
+ServerName upfile.s.dibiak.net
+
+	suPHP_ConfigPath /var/www/upfile
+	SuexecUserGroup upfile upfile
+
+DocumentRoot /var/www/upfile/
+
+	<Directory /var/www/upfile>
+		suPHP_Engine on
+		Options Indexes FollowSymLinks MultiViews +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+		AllowOverride All
+		Order allow,deny
+		allow from all
+	</Directory>
+
+	ErrorLog /var/www/upfile/.log/error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+
+	LogLevel debug
+
+	CustomLog /var/www/upfile/.log/access.log combined
+
+</VirtualHost>
